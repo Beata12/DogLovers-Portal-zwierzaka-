@@ -40,14 +40,14 @@ class _RegistrerFormState extends State<RegistrerForm> {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    // Example password verification logic
-    if (email.length < 4) {
+    // Sprawdzenie długości loginu
+    if (email.length < 3) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Błąd logowania'),
-            content: Text('Wprowadź login, który zawiera co najmniej 4 znaki.'),
+            content: Text('Wprowadź login, który zawiera co najmniej 3 litery.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -59,7 +59,29 @@ class _RegistrerFormState extends State<RegistrerForm> {
           );
         },
       );
-    } else if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&\*])').hasMatch(password)) {
+    }
+    // Sprawdzenie poprawności loginu
+    else if (!RegExp(r'^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$').hasMatch(email)) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Błąd logowania'),
+            content: Text('Wprowadź poprawny login. Nie może składać się tylko ze znaków specjalnych.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+    // Sprawdzenie poprawności hasła
+    else if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&\*])').hasMatch(password)) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -133,7 +155,7 @@ class _RegistrerFormState extends State<RegistrerForm> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Portal\nzwierzaka',
+                                'Portal zwierzaka\nStwórz nowy profil',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -141,10 +163,12 @@ class _RegistrerFormState extends State<RegistrerForm> {
                                   fontSize: 25,
                                 ),
                               ),
+
                             ],
                           ),
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -167,7 +191,7 @@ class _RegistrerFormState extends State<RegistrerForm> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Login: ',
+                                'Podaj login: ',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -200,7 +224,7 @@ class _RegistrerFormState extends State<RegistrerForm> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Hasło: ',
+                                'Podaj hasło: ',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -241,7 +265,7 @@ class _RegistrerFormState extends State<RegistrerForm> {
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Text(
-                              'Zarejestruj',
+                              'Zarejestruj się',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
