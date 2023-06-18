@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zaliczenie/pages/profilePage.dart';
-import 'package:zaliczenie/pages/registerForm.dart';
+import 'ProfilePage.dart';
 
 void main() {
   runApp(Login());
@@ -45,7 +44,14 @@ class _LoginPageState extends State<LoginPage> {
     if (email.toLowerCase() == 'apka12' && password == 'ap12') {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ProfilePage(ownerName: "Krystyna", dogName: "Akira", dateOfBirth: "2022-07-02", breed: "BOS")),
+        MaterialPageRoute(
+          builder: (context) => ProfilePage(
+            ownerName: "Krystyna",
+            dogName: "Akira",
+            dateOfBirth: "2022-07-02",
+            breed: "BOS",
+          ),
+        ),
       );
 
       setState(() {
@@ -74,23 +80,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void register() {
-    // Handle registration logic here
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Registration'),
-          content: Text('Registration feature is under development.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => registerForm()),
     );
   }
 
@@ -274,12 +266,7 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor: Colors.pink[300],
                             minimumSize: Size.fromHeight(40),
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => RegistrerForm()),
-                            );
-                          },
+                          onPressed: register,
                         ),
                       ),
                     ],
@@ -292,4 +279,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  registerForm() {}
 }

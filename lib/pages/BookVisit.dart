@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'BookedVisits.dart';
-// import 'appointment.dart';
 
 class BookVisit extends StatefulWidget {
   const BookVisit({Key? key, this.restorationId}) : super(key: key);
@@ -182,7 +181,7 @@ class _BookVisitState extends State<BookVisit> with RestorationMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Zarezerwowane wizyty', // Tekst "Zarezerwowane wizyty"
+                        'Zarezerwuj wizytę', // Tekst "Zarezerwowane wizyty"
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

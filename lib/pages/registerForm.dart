@@ -1,30 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:zaliczenie/pages/profileForm.dart';
+import 'ProfilePage.dart';
 
-void main() {
-  runApp(Register());
-}
-
-class Register extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Register Page',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: RegistrerForm(),
-    );
-  }
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class RegistrerForm extends StatefulWidget {
-  @override
-  _RegistrerFormState createState() => _RegistrerFormState();
-}
-
-class _RegistrerFormState extends State<RegistrerForm> {
+class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -39,79 +21,23 @@ class _RegistrerFormState extends State<RegistrerForm> {
   void register() {
     String email = _emailController.text;
     String password = _passwordController.text;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfilePage(
+          ownerName: "Your Name",
+          dogName: "Your Dog's Name",
+          dateOfBirth: "YYYY-MM-DD",
+          breed: "Dog Breed",
+        ),
+      ),
+    );
 
-    // Sprawdzenie długości loginu
-    if (email.length < 3) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Błąd logowania'),
-            content: Text('Wprowadź login, który zawiera co najmniej 3 litery.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-    // Sprawdzenie poprawności loginu
-    else if (!RegExp(r'^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$').hasMatch(email)) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Błąd logowania'),
-            content: Text('Wprowadź poprawny login. Nie może składać się tylko ze znaków specjalnych.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-    // Sprawdzenie poprawności hasła
-    else if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&\*])').hasMatch(password)) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Błąd logowania'),
-            content: Text('Sprawdź poprawność hasła. Musi zawierać małe i duże litery, liczby oraz znak specjalny.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ProfileForm()),
-      );
-
-      setState(() {
-        _emailController.clear();
-        _passwordController.clear();
-      });
-    }
+    setState(() {
+      _emailController.clear();
+      _passwordController.clear();
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -163,12 +89,10 @@ class _RegistrerFormState extends State<RegistrerForm> {
                                   fontSize: 25,
                                 ),
                               ),
-
                             ],
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
