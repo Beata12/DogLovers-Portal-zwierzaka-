@@ -75,7 +75,7 @@ class _Dietician extends State<Dietician>
       backgroundColor: Colors.grey[400],
       appBar: AppBar(
         backgroundColor: Colors.pink,
-        title: const Text('Zarezeerwuj wizyte',
+        title: const Text('Dietetyk',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 25,
