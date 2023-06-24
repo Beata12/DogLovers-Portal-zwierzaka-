@@ -29,10 +29,7 @@ class _DogTherapist extends State<DogTherapist>
     },
   );
 
-  static Route<DateTime> _datePickerRoute(
-      BuildContext context,
-      Object? arguments,
-      ) {
+  static Route<DateTime> _datePickerRoute(BuildContext context, Object? arguments) {
     return DialogRoute<DateTime>(
       context: context,
       builder: (BuildContext context) {
@@ -50,8 +47,7 @@ class _DogTherapist extends State<DogTherapist>
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
     registerForRestoration(_selectedDate, 'selected_date');
-    registerForRestoration(
-        _restorableDatePickerRouteFuture, 'date_picker_route_future');
+    registerForRestoration(_restorableDatePickerRouteFuture, 'date_picker_route_future');
   }
 
   void _selectDate(DateTime? newSelectedDate) {
@@ -60,12 +56,14 @@ class _DogTherapist extends State<DogTherapist>
         _selectedDate.value = newSelectedDate;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-              'Twoja wizyta odbędzie sie: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}, \nDo zobaczenia!',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.white)),),
-        );
+            'Twoja wizyta odbędzie sie: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}, \nDo zobaczenia!',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.white,
+            ),
+          ),
+        ));
       });
     }
   }
@@ -76,425 +74,519 @@ class _DogTherapist extends State<DogTherapist>
       backgroundColor: Colors.grey[400],
       appBar: AppBar(
         backgroundColor: Colors.pink,
-        title: const Text('Dogoterapeuta',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-                color: Colors.white)),
+        title: const Text(
+          'Dogoterapeuta',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(top: 5.0),
         child: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25, top: 25),
-                child: Container(
-                  height: 113,
-                  decoration: BoxDecoration(
-                    color: Colors.pink[50],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-training.png',
-                                  height: 30,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 25, left: 25, top: 20),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.pink[50],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Image.asset(
+                                    'assets/icons/trainer.png',
+                                    height: 30,
+                                  ),
                                 ),
-                              ),
-                              Text('Spotkanie z psem', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('50 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
+                                Text('Spotkanie z psem', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('50 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => BookVisit()),
-                                          );
-                                        },
-                                        child: const Text(
-                                          'Zarezerwuj wizytę',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: Colors.black, // Ustawienie koloru na czarny
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 113,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[500],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-training.png',
-                                  height: 30,
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(right: 25, left: 25),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[500],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Image.asset(
+                                    'assets/icons/trainer.png',
+                                    height: 30,
+                                  ),
                                 ),
-                              ),
-                              Text('Edukacja z psem', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('80 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
+                                Text('Edukacja z psem', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('80 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => BookVisit()),
-                                          );
-                                        },
-                                        child: const Text(
-                                          'Zarezerwuj wizytę',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: Colors.black, // Ustawienie koloru na czarny
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 113,
-                  decoration: BoxDecoration(
-                    color: Colors.pink[50],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-training.png',
-                                  height: 30,
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(right: 25, left: 25),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.pink[50],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Image.asset(
+                                    'assets/icons/trainer.png',
+                                    height: 30,
+                                  ),
                                 ),
-                              ),
-                              Text('Terapia z psem - indywidualna', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('100 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
+                                Text('Terapia z psem - indywidualna', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('100 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => BookVisit()),
-                                          );
-                                        },
-                                        child: const Text(
-                                          'Zarezerwuj wizytę',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: Colors.black, // Ustawienie koloru na czarny
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 113,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[500],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-training.png',
-                                  height: 30,
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(right: 25, left: 25),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[500],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Image.asset(
+                                    'assets/icons/trainer.png',
+                                    height: 30,
+                                  ),
                                 ),
-                              ),
-                              Text('Terapia z psem - grupowa', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('70 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
+                                Text('Terapia z psem - grupowa', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('70 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => BookVisit()),
-                                          );
-                                        },
-                                        child: const Text(
-                                          'Zarezerwuj wizytę',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: Colors.black, // Ustawienie koloru na czarny
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 113,
-                  decoration: BoxDecoration(
-                    color: Colors.pink[50],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-training.png',
-                                  height: 30,
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(right: 25, left: 25),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.pink[50],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Image.asset(
+                                    'assets/icons/trainer.png',
+                                    height: 30,
+                                  ),
                                 ),
-                              ),
-                              Text('Edukacja z psem - online', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('60 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
+                                Text('Edukacja z psem - online', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('60 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => BookVisit()),
-                                          );
-                                        },
-                                        child: const Text(
-                                          'Zarezerwuj wizytę',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: Colors.black, // Ustawienie koloru na czarny
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(right: 25, left: 25),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[500],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Image.asset(
+                                    'assets/icons/trainer.png',
+                                    height: 30,
+                                  ),
+                                ),
+                                Text('Konsultacja online', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('80 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
-

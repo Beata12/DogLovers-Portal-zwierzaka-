@@ -93,7 +93,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 25, left: 25),
+                  padding: const EdgeInsets.only(right: 25, left: 25, top: 20),
                   child: Container(
                     height: 113,
                     decoration: BoxDecoration(
@@ -217,7 +217,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(right: 25, left: 25),
                   child: Container(
@@ -320,7 +320,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(right: 25, left: 25),
                   child: Container(
@@ -423,7 +423,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(right: 25, left: 25),
                   child: Container(
@@ -526,7 +526,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(right: 25, left: 25),
                   child: Container(
@@ -635,7 +635,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(right: 25, left: 25),
                   child: Container(
@@ -738,7 +738,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(right: 25, left: 25),
                   child: Container(
@@ -864,7 +864,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(right: 25, left: 25),
                   child: Container(
@@ -990,6 +990,7 @@ class _AllSpecialistsState extends State<AllSpecialists> with RestorationMixin {
                     ),
                   ),
                 ),
+                SizedBox(height: 20),
               ],
             ),
           ),

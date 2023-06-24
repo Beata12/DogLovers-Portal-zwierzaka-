@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-
+import 'BookVisit.dart';
 
 class Dietician extends StatefulWidget {
-  const Dietician({super.key, this.restorationId});
+  const Dietician({Key? key, this.restorationId});
 
   final String? restorationId;
 
   @override
-  State<Dietician> createState() => _Dietician();
+  State<Dietician> createState() => _DieticianState();
 }
 
-class _Dietician extends State<Dietician>
-    with RestorationMixin {
+class _DieticianState extends State<Dietician> with RestorationMixin {
   @override
   String? get restorationId => widget.restorationId;
 
   final RestorableDateTime _selectedDate =
   RestorableDateTime(DateTime(2023, 1, 19));
-  late final RestorableRouteFuture<DateTime?> _restorableDatePickerRouteFuture =
-  RestorableRouteFuture<DateTime?>(
+  late final RestorableRouteFuture<DateTime?>
+  _restorableDatePickerRouteFuture = RestorableRouteFuture<DateTime?>(
     onComplete: _selectDate,
     onPresent: (NavigatorState navigator, Object? arguments) {
       return navigator.restorablePush(
@@ -59,12 +58,14 @@ class _Dietician extends State<Dietician>
         _selectedDate.value = newSelectedDate;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-              'Wybrałaś: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}, Do zobaczenia!',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: Colors.white)),),
-        );
+            'Wybrałaś: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}, Do zobaczenia!',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              color: Colors.white,
+            ),
+          ),
+        ));
       });
     }
   }
@@ -75,474 +76,567 @@ class _Dietician extends State<Dietician>
       backgroundColor: Colors.grey[400],
       appBar: AppBar(
         backgroundColor: Colors.pink,
-        title: const Text('Dietetyk',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-                color: Colors.white)),
+        title: const Text(
+          'Dietetyk',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+            color: Colors.white,
+          ),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25, top: 25),
-                child: Container(
-                  height: 115,
-                  decoration: BoxDecoration(
-                    color: Colors.pink[50],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-food.png',
-                                  height: 30,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                  const EdgeInsets.only(right: 25, left: 25, top: 20),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.pink[50],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Image.asset(
+                                    'assets/icons/dog-food.png',
+                                    height: 30,
+                                  ),
                                 ),
-                              ),
-                              Text('Konsultacja żywieniowa - psy', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('100 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
+                                Text(
+                                  'Konsultacja żywieniowa - psy',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                                Text(
+                                  '100 zł',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        style: ButtonStyle(
-                                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                        ),
-                                        onPressed: () {
-                                          _restorableDatePickerRouteFuture.present();
-                                        },
-                                        child: const Text('Zarezerwuj wizytę',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18)),
+                        Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 115,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[500],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-food.png',
-                                  height: 30,
-                                ),
-                              ),
-                              Text('Konsultacja - dolegliwości', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('110 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        style: ButtonStyle(
-                                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                        ),
-                                        onPressed: () {
-                                          _restorableDatePickerRouteFuture.present();
-                                        },
-                                        child: const Text('Zarezerwuj wizytę',
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18)),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 115,
-                  decoration: BoxDecoration(
-                    color: Colors.pink[50],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-food.png',
-                                  height: 30,
+                SizedBox(height: 20),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(right: 25, left: 25, top: 5),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[500],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Image.asset(
+                                    'assets/icons/dog-food.png',
+                                    height: 30,
+                                  ),
                                 ),
-                              ),
-                              Text('Konsultacja - niedobory', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('120 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
+                                Text(
+                                  'Konsultacja - dolegliwości',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                                Text(
+                                  '110 zł',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        style: ButtonStyle(
-                                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                        ),
-                                        onPressed: () {
-                                          _restorableDatePickerRouteFuture.present();
-                                        },
-                                        child: const Text('Zarezerwuj wizytę',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18)),
+                        Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 110,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[500],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 25),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: Image.asset(
-                                  'assets/icons/dog-food.png',
-                                  height: 30,
-                                ),
-                              ),
-                              Text('BARF dla psa - wprowadzenie', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('150 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        style: ButtonStyle(
-                                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                        ),
-                                        onPressed: () {
-                                          _restorableDatePickerRouteFuture.present();
-                                        },
-                                        child: const Text('Zarezerwuj wizytę',
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18)),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 115,
-                  decoration: BoxDecoration(
-                    color: Colors.pink[50],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-food.png',
-                                  height: 30,
+                SizedBox(height: 20),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(right: 25, left: 25, top: 5),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.pink[50],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Image.asset(
+                                    'assets/icons/dog-food.png',
+                                    height: 30,
+                                  ),
                                 ),
-                              ),
-                              Text('Pomoc w doborze karmy', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('60 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
+                                Text(
+                                  'Konsultacja - niedobory',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                                Text(
+                                  '120 zł',
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        style: ButtonStyle(
-                                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                        ),
-                                        onPressed: () {
-                                          _restorableDatePickerRouteFuture.present();
-                                        },
-                                        child: const Text('Zarezerwuj wizytę',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18)),
+                        Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 25, left: 25),
-                child: Container(
-                  height: 115,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[500],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  'assets/icons/dog-food.png',
-                                  height: 30,
-                                ),
-                              ),
-                              Text('Szkolenia - żywienie psów', style: TextStyle(
-                                fontSize: 17,)),
-                              Text('100 zł', style: TextStyle(
-                                fontSize: 17,)),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 0, top: 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row (
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(
-                                      'assets/icons/booking.png',
-                                      height: 20,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Center(
-                                      child: OutlinedButton(
-                                        style: ButtonStyle(
-                                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                        ),
-                                        onPressed: () {
-                                          _restorableDatePickerRouteFuture.present();
-                                        },
-                                        child: const Text('Zarezerwuj wizytę',
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18)),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],),
+                SizedBox(height: 20),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(right: 25, left: 25, top: 5),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[500],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Image.asset(
+                                    'assets/icons/dog-food.png',
+                                    height: 30,
+                                  ),
+                                ),
+                                Text('BARF dla psa - wprowadzenie', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('150 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(right: 25, left: 25, top: 5),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.pink[50],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Image.asset(
+                                    'assets/icons/dog-food.png',
+                                    height: 30,
+                                  ),
+                                ),
+                                Text('Pomoc w doborze karmy', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('60 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(right: 25, left: 25, top: 5),
+                  child: Container(
+                    height: 115,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[500],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Image.asset(
+                                    'assets/icons/dog-food.png',
+                                    height: 30,
+                                  ),
+                                ),
+                                Text('Szkolenia - żywienie psów', style: TextStyle(
+                                  fontSize: 17,)),
+                                Text('100 zł', style: TextStyle(
+                                  fontSize: 17,)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 10),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 0, top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.only(right: 8.0),
+                                      child: Image.asset(
+                                        'assets/icons/booking.png',
+                                        height: 20,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Center(
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BookVisit(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Zarezerwuj wizytę',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
         ),
       ),
     );
