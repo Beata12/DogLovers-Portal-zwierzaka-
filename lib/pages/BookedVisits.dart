@@ -291,9 +291,12 @@ class _BookedVisitsState extends State<BookedVisits> {
                                 MaterialPageRoute(builder: (context) => HomePage()),
                               );
                             },
-                            child: Icon(Icons.home),
+                            child: Icon(
+                              Icons.home,
+                              color: Colors.grey[500],
+                            ),
+                            backgroundColor: Colors.pink[50],
                           ),
-
                         ],
                       ),
                     ),
