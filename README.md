@@ -12,4 +12,4 @@ DogLovers Pet Portal is a Flutter-based application designed specifically for do
 - **Specialist Ratings**: Browse through specialists listed in the app and view their ratings. Star ratings beside each specialist's name allow you to quickly see who is highly recommended.
 
 
-![image](https://github.com/Beata12/flutter/assets/38575612/aafcaf24-6733-409f-bd97-a2e425f0e0d5)        ![image](https://github.com/Beata12/flutter/assets/38575612/529542bd-357f-4a94-b326-64ec5b34f687)
+![image](https://github.com/Beata12/flutter/assets/38575612/529542bd-357f-4a94-b326-64ec5b34f687)              ![image](https://github.com/Beata12/flutter/assets/38575612/aafcaf24-6733-409f-bd97-a2e425f0e0d5)
