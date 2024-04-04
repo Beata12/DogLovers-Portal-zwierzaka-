@@ -20,9 +20,4 @@ On the left side, you can see the **Profile Page**, where a dog owner can view a
 On the right side, the **Main Page** of the app is displayed, serving as the central hub for accessing the application's features. Here, users are greeted with a clean and intuitive dashboard that provides direct access to key functionalities including scheduling appointments with pet care specialists, viewing specialist ratings, and managing pet profiles. The main page is designed to enhance the user experience by organizing essential services in an accessible manner, ensuring that owners have all the tools they need to care for their pets efficiently.
 
 
-<p align="center">
-  <img src="![image](https://github.com/Beata12/flutter/assets/38575612/529542bd-357f-4a94-b326-64ec5b34f687)" alt="opis obrazu">
-</p>
-
-
-![image](https://github.com/Beata12/flutter/assets/38575612/529542bd-357f-4a94-b326-64ec5b34f687)              ![image](https://github.com/Beata12/flutter/assets/38575612/aafcaf24-6733-409f-bd97-a2e425f0e0d5)
+![image](https://github.com/Beata12/flutter/assets/38575612/529542bd-357f-4a94-b326-64ec5b34f687)                ![image](https://github.com/Beata12/flutter/assets/38575612/aafcaf24-6733-409f-bd97-a2e425f0e0d5)
